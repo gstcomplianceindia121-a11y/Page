@@ -6,27 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rounak Raj - AI/ML Engineer Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --bg-light: #ffffff;
-            --bg-alt: #f8f9fa;
-            --text-main: #333;
-            --text-muted: #666;
-            --nav-bg: rgba(255, 255, 255, 0.95);
-
-            /* Developer Mode Variables */
-            --dev-bg: #000000;
-            --dev-green: #00ff41;
-            --dev-green-glow: rgba(0, 255, 65, 0.5);
-            --dev-font: 'JetBrains Mono', monospace;
-        }
-
         /* Reset and base styles */
         * {
             margin: 0;
@@ -41,7 +24,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
@@ -506,14 +489,16 @@
             font-weight: 500;
         }
 
-        /* View All Work Section */
+        /* View All Work Section - FIX: prevent GitHub icon/box collapse */
         .view-all-work {
             margin-top: 4rem;
-            padding: 3rem 0;
+            padding: 2.5rem 2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 20px;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .view-all-work::before {
@@ -534,6 +519,9 @@
             gap: 2rem;
             position: relative;
             z-index: 1;
+            flex-wrap: wrap;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .github-content {
@@ -541,11 +529,16 @@
             align-items: center;
             gap: 1.5rem;
             color: white;
+            flex: 1 1 280px;
+            min-width: 0;
         }
 
         .github-icon {
             width: 80px;
             height: 80px;
+            min-width: 80px;
+            min-height: 80px;
+            flex-shrink: 0;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
@@ -559,6 +552,11 @@
             color: white;
         }
 
+        .github-text {
+            flex: 1;
+            min-width: 0;
+        }
+
         .github-text h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
@@ -569,11 +567,13 @@
             font-size: 1.1rem;
             opacity: 0.9;
             margin: 0;
+            line-height: 1.4;
         }
 
         .github-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.8rem;
             padding: 1rem 2rem;
             background: rgba(255, 255, 255, 0.15);
@@ -585,6 +585,10 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+            white-space: nowrap;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .github-btn:hover {
@@ -953,7 +957,11 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Mobile responsive for GitHub showcase */
+            /* Mobile responsive for GitHub showcase - FIX */
+            .view-all-work {
+                padding: 2rem 1.25rem;
+            }
+
             .github-showcase {
                 flex-direction: column;
                 text-align: center;
@@ -964,6 +972,8 @@
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
+                flex: 1 1 auto;
+                width: 100%;
             }
 
             .github-text h3 {
@@ -1097,367 +1107,10 @@
         body.no-scroll {
             overflow: hidden;
         }
-
-        /* Developer Mode Toggle */
-        .mode-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 8px 15px;
-            border-radius: 50px;
-            background: var(--primary-gradient);
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            margin-left: 20px;
-            border: none;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            white-space: nowrap;
-            z-index: 1001;
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
-            }
-
-            50% {
-                box-shadow: 0 0 20px rgba(102, 126, 234, 0.7);
-            }
-
-            100% {
-                box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
-            }
-        }
-
-        @keyframes pulse-green {
-            0% {
-                box-shadow: 0 0 5px var(--dev-green-glow);
-            }
-
-            50% {
-                box-shadow: 0 0 20px var(--dev-green);
-            }
-
-            100% {
-                box-shadow: 0 0 5px var(--dev-green-glow);
-            }
-        }
-
-        .mode-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .mode-toggle i {
-            font-size: 1rem;
-        }
-
-        /* Developer Mode Global Overrides */
-        body.developer-mode {
-            background-color: var(--dev-bg) !important;
-            color: var(--dev-green) !important;
-            font-family: var(--dev-font) !important;
-        }
-
-        .developer-mode * {
-            border-color: var(--dev-green) !important;
-        }
-
-        .developer-mode .navbar {
-            background: rgba(0, 0, 0, 0.9) !important;
-            border-bottom: 2px solid var(--dev-green) !important;
-        }
-
-        .developer-mode .nav-link,
-        .developer-mode .nav-logo h2,
-        .developer-mode .hero-title,
-        .developer-mode .section-title,
-        .developer-mode .highlight,
-        .developer-mode .timeline-date,
-        .developer-mode .timeline-content h4,
-        .developer-mode .education-card h4,
-        .developer-mode .contact-details a,
-        .developer-mode .stat-item h3 {
-            color: var(--dev-green) !important;
-            -webkit-text-fill-color: var(--dev-green) !important;
-            background: none !important;
-            text-shadow: 0 0 8px var(--dev-green-glow) !important;
-        }
-
-        .developer-mode .hero-subtitle,
-        .developer-mode .hero-description,
-        .developer-mode .about-text,
-        .developer-mode .project-description,
-        .developer-mode .timeline-content p,
-        .developer-mode .education-period,
-        .developer-mode .contact-details h4 {
-            color: var(--dev-green) !important;
-            opacity: 0.8;
-        }
-
-        .developer-mode .hero,
-        .developer-mode .about,
-        .developer-mode .skills,
-        .developer-mode .projects,
-        .developer-mode .experience,
-        .developer-mode .education,
-        .developer-mode .contact,
-        .developer-mode .footer {
-            background: var(--dev-bg) !important;
-        }
-
-        .developer-mode .skill-category,
-        .developer-mode .project-card,
-        .developer-mode .education-card,
-        .developer-mode .social-link,
-        .developer-mode .stat-item {
-            background: #050505 !important;
-            border: 1px solid var(--dev-green) !important;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2) !important;
-        }
-
-        .developer-mode .skill-tag,
-        .developer-mode .tech-tag {
-            background: transparent !important;
-            color: var(--dev-green) !important;
-            border: 1px solid var(--dev-green) !important;
-            box-shadow: 0 0 5px var(--dev-green-glow);
-        }
-
-        .developer-mode .btn-primary,
-        .developer-mode .btn-secondary {
-            background: transparent !important;
-            color: var(--dev-green) !important;
-            border: 2px solid var(--dev-green) !important;
-            box-shadow: 0 0 10px var(--dev-green-glow) !important;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .developer-mode .btn-primary:hover,
-        .developer-mode .btn-secondary:hover {
-            background: var(--dev-green) !important;
-            color: black !important;
-            box-shadow: 0 0 20px var(--dev-green) !important;
-        }
-
-        .developer-mode .mode-toggle {
-            background: var(--dev-green) !important;
-            color: black !important;
-            box-shadow: 0 0 15px var(--dev-green) !important;
-            animation: pulse-green 2s infinite;
-        }
-
-        .developer-mode .timeline::before {
-            background: var(--dev-green) !important;
-        }
-
-        .developer-mode .timeline-dot {
-            background: black !important;
-            border-color: var(--dev-green) !important;
-            box-shadow: 0 0 10px var(--dev-green) !important;
-        }
-
-        .developer-mode .profile-img {
-            filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(90deg) saturate(500%);
-            border: 2px solid var(--dev-green);
-            box-shadow: 0 0 20px var(--dev-green);
-        }
-
-        /* Scanlines Effect */
-        .developer-mode::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2000;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        /* Matrix Canvas */
-        #matrix-canvas {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        .developer-mode #matrix-canvas {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .mode-toggle {
-                margin-left: 0;
-                order: -1;
-            }
-        }
-
-        /* Vim Mode Indicator */
-        .vim-mode-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #00ff41;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-family: var(--dev-font);
-            font-size: 0.9rem;
-            border: 1px solid var(--dev-green);
-            z-index: 2001;
-            display: none;
-            box-shadow: 0 0 10px var(--dev-green-glow);
-        }
-
-        .developer-mode .vim-mode-indicator {
-            display: block;
-        }
-
-        .vim-mode-indicator span {
-            font-weight: bold;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-
-        /* Mini Terminal Widget */
-        .mini-terminal {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 300px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid var(--dev-green);
-            border-radius: 8px;
-            font-family: var(--dev-font);
-            font-size: 0.75rem;
-            color: var(--dev-green);
-            z-index: 2001;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-        }
-
-        .developer-mode .mini-terminal {
-            display: flex;
-        }
-
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 5px 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid #333;
-        }
-
-        .terminal-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .dot-red {
-            background: #ff5f56;
-        }
-
-        .dot-yellow {
-            background: #ffbd2e;
-        }
-
-        .dot-green {
-            background: #27c93f;
-        }
-
-        .terminal-title {
-            color: #888;
-            font-size: 0.7rem;
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .terminal-body {
-            padding: 10px;
-            height: 150px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .terminal-body::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .terminal-body::-webkit-scrollbar-thumb {
-            background: var(--dev-green);
-            border-radius: 2px;
-        }
-
-        .log-entry {
-            line-height: 1.2;
-            word-break: break-all;
-        }
-
-        .log-prefix {
-            font-weight: bold;
-            margin-right: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .mini-terminal {
-                width: 180px;
-                /* Smaller on mobile */
-                height: 120px;
-                bottom: 10px;
-                left: 10px;
-                font-size: 0.65rem;
-                opacity: 0.8;
-                border-width: 1px;
-            }
-
-            .terminal-body {
-                height: 80px;
-            }
-        }
     </style>
 </head>
 
 <body>
-    <canvas id="matrix-canvas"></canvas>
-    <div class="vim-mode-indicator" id="vim-indicator">-- NORMAL --<span>_</span></div>
-
-    <div class="mini-terminal" id="mini-terminal">
-        <div class="terminal-header">
-            <div class="terminal-dot dot-red"></div>
-            <div class="terminal-dot dot-yellow"></div>
-            <div class="terminal-dot dot-green"></div>
-            <div class="terminal-title">system_logs.sh</div>
-        </div>
-        <div class="terminal-body" id="terminal-body">
-            <div class="log-entry"><span class="log-prefix">></span> Initializing system...</div>
-        </div>
-    </div>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1489,10 +1142,6 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
-            <button class="mode-toggle" id="mode-toggle">
-                <i class="fas fa-terminal"></i>
-                <span id="toggle-text">DEV MODE</span>
-            </button>
         </div>
     </nav>
 
@@ -1512,7 +1161,8 @@
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                        <a href="resume.pdf" target="_blank" class="btn btn-primary">View Resume (PDF)</a>
+                        <a href="Rounak_Raj_Resume_AI&ML.pdf" target="_blank" class="btn btn-primary">View Resume
+                            (PDF)</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -1552,11 +1202,11 @@
                         <p>CGPA</p>
                     </div>
                     <div class="stat-item">
-                        <h3>8+</h3>
+                        <h3>9+</h3>
                         <p>Projects</p>
                     </div>
                     <div class="stat-item">
-                        <h3>2</h3>
+                        <h3>3</h3>
                         <p>Internships</p>
                     </div>
                 </div>
@@ -1624,6 +1274,7 @@
                         <span class="skill-tag">Kubernetes</span>
                         <span class="skill-tag">Apache Kafka</span>
                         <span class="skill-tag">Redis</span>
+                         <span class="skill-tag">websocket</span>
 
                     </div>
                 </div>
@@ -1636,6 +1287,27 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Financial Sight - AI Market Intelligence</h3>
+                        <div class="project-links">
+                            <a href="https://finance-sight.rounakraj.online/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        Next-Gen Trading Intelligence platform harnessing the power of real-time multi-source data
+                        analysis, intelligent chatbots, and predictive stock insights in one unified dashboard. Includes
+                        Risk-Free Paper Trading, Deep Analytics, and a Portfolio Strategy Engine.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">AI Agent</span>
+                        <span class="tech-tag">Financial Analysis</span>
+                        <span class="tech-tag">Real-time Data</span>
+                        <span class="tech-tag">LLMs</span>
+                    </div>
+                </div>
                 <div class="project-card">
                     <div class="project-header">
                         <h3>AI Lead Intent Scoring Dashboard</h3>
@@ -1751,23 +1423,31 @@
 
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>ThinkSync</h3>
+                        <h3>FamilyShield — AI-Powered Family Safety Platform</h3>
                         <div class="project-links">
-                            <a href="https://github.com/rajrounak21/ThinkSync" target="_blank" class="project-link">
+                            <a href="https://familyshield.rounakraj.online/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://github.com/rajrounak21/Family-Shield" target="_blank" class="project-link">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
                     <p class="project-description">
-                        Developed a full-stack AI chatbot platform powered by Google Gemini Flash API.
-                        Integrated secure user authentication and MySQL-backed chat history.
-                        Designed a responsive Bootstrap UI for smooth interaction.
+                        A layered AI-powered family safety platform that analyzes suspicious messages, images,
+                        and documents using vision, contextual reasoning, and response validation. Lets users
+                        paste a suspicious message or link, get an instant AI risk analysis in Hindi/Hinglish/English,
+                        share it with trusted family members in one tap, and record a family verdict before
+                        anyone clicks, pays, or shares an OTP. Includes real-time family chat, smart push
+                        notifications, and emergency guidance (1930 helpline, cybercrime reporting).
                     </p>
                     <div class="project-tech">
-                        <span class="tech-tag">Full-Stack</span>
-                        <span class="tech-tag">Google Gemini</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Bootstrap</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Groq AI</span>
+                        <span class="tech-tag">LangGraph</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">AI Safety</span>
                     </div>
                 </div>
 
@@ -1863,7 +1543,31 @@
     <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title">Work Experience</h2>
+
             <div class="timeline">
+                <!-- Walsis eConnect -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Apr–Jul 2026</div>
+                    <div class="timeline-content">
+                        <h3>Python Developer – Trainee</h3>
+                        <h4>Walsis eConnect India Pvt. Ltd. | Patna, Bihar</h4>
+                        <ul>
+                            <li>Built backend features for Expensepedia, an expense-management product, including a
+                                document-processing pipeline that ingests PDF/image receipts and invoices for automated
+                                data extraction using PaddleOCR.</li>
+                            <li>Designed the extraction pipeline to parse and validate key fields (vendor, amount, date,
+                                line items) from OCR output, applying validation rules to catch malformed, missing, or
+                                misread data before downstream processing.</li>
+                            <li>Generated structured Excel expense reports from validated data using openpyxl,
+                                automating a workflow that previously required manual entry.</li>
+                            <li>Collaborated with senior developers on code reviews, following production-grade Python
+                                development practices.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- IIT Indore -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">Oct 2024</div>
@@ -1877,6 +1581,8 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- Vaishnav Technologies -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">Sep–Oct 2024</div>
@@ -1884,12 +1590,13 @@
                         <h3>Machine Learning with Python Intern</h3>
                         <h4>Vaishnav Technologies</h4>
                         <p>
-                            Applied ML algorithms & data analysis techniques in real-world projects.
-                            Worked with Pandas, NumPy, scikit-learn.
-                            Built practical ML models & pipelines during internship.
+                            Applied ML algorithms and data analysis techniques in real-world projects.
+                            Worked with Pandas, NumPy, and scikit-learn.
+                            Built practical ML models and pipelines during the internship.
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -2363,185 +2070,6 @@
         const throttledScroll = throttle(() => {
             updateActiveNavLink();
         }, 100);
-
-        // Developer Mode & Matrix Effect
-        function initializeDeveloperMode() {
-            const toggle = document.getElementById('mode-toggle');
-            const toggleText = document.getElementById('toggle-text');
-            const body = document.body;
-            const canvas = document.getElementById('matrix-canvas');
-            const ctx = canvas.getContext('2d');
-
-            // Load preference
-            const isDevMode = localStorage.getItem('developerMode') === 'true';
-            if (isDevMode) {
-                body.classList.add('developer-mode');
-                if (toggleText) toggleText.innerText = 'USER MODE';
-            }
-
-            if (toggle) {
-                toggle.addEventListener('click', () => {
-                    const active = body.classList.toggle('developer-mode');
-                    localStorage.setItem('developerMode', active);
-                    if (toggleText) toggleText.innerText = active ? 'USER MODE' : 'DEV MODE';
-
-                    if (active) {
-                        console.log("%c SYSTEM OVERRIDE INITIATED", "color: #00ff41; font-weight: bold; font-size: 20px;");
-                    }
-                });
-            }
-
-            // Matrix Effect
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-            let columns = Math.floor(width / 20);
-            let drops = [];
-
-            for (let i = 0; i < columns; i++) {
-                drops[i] = 1;
-            }
-
-            function drawMatrix() {
-                if (!body.classList.contains('developer-mode')) {
-                    requestAnimationFrame(drawMatrix);
-                    return;
-                }
-
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, width, height);
-
-                ctx.fillStyle = '#00ff41';
-                ctx.font = '15px monospace';
-
-                for (let i = 0; i < drops.length; i++) {
-                    const text = String.fromCharCode(Math.random() * 128);
-                    ctx.fillText(text, i * 20, drops[i] * 20);
-
-                    if (drops[i] * 20 > height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                }
-                setTimeout(() => requestAnimationFrame(drawMatrix), 50);
-            }
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-                columns = Math.floor(width / 20);
-                drops = [];
-                for (let i = 0; i < columns; i++) {
-                    drops[i] = 1;
-                }
-            });
-
-            drawMatrix();
-        }
-
-        initializeDeveloperMode();
-
-        // Keyboard-Only Navigation (Vim Mode)
-        function initializeVimNavigation() {
-            const body = document.body;
-            const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
-            let currentSectionIndex = 0;
-
-            window.addEventListener('keydown', (e) => {
-                // Only allow Vim keys if Developer Mode is active for that "scary" feel
-                if (!body.classList.contains('developer-mode')) return;
-
-                const key = e.key.toLowerCase();
-
-                // Navigation keys
-                if (key === 'j') {
-                    // Scroll Down
-                    window.scrollBy({ top: 100, behavior: 'smooth' });
-                } else if (key === 'k') {
-                    // Scroll Up
-                    window.scrollBy({ top: -100, behavior: 'smooth' });
-                } else if (key === 'g') {
-                    // Go to bottom or top
-                    if (e.shiftKey) {
-                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                    } else {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                } else if (key === 'h') {
-                    // Return to Home
-                    document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-                }
-
-                // Number keys for direct section access
-                if (!isNaN(key) && key >= 1 && key <= sections.length) {
-                    const sectionId = sections[key - 1];
-                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-
-                    // Visual feedback in console
-                    console.log(`%c JUMPING TO SECTION: ${sectionId.toUpperCase()}`, "color: #00ff41; font-weight: bold;");
-                }
-
-                // Toggle Developer Mode with 't'
-                if (key === 't') {
-                    document.getElementById('mode-toggle').click();
-                }
-            });
-        }
-
-        initializeVimNavigation();
-
-        // Mini Terminal Log Simulation
-        function initializeMiniTerminal() {
-            const terminalBody = document.getElementById('terminal-body');
-            const logs = [
-                "Establishing secure connection to portfolio.db...",
-                "Scanning AI/ML skill nodes...",
-                "FastAPI server: [OK]",
-                "LangChain agents loaded: 4 active",
-                "Retrieving project credentials...",
-                "Hacking into the mainframe (just kidding)...",
-                "Analyzing RAG system latency: 12ms",
-                "Fetching latest GitHub activity...",
-                "Processing ML metrics for 8.77 CGPA...",
-                "Syncing neural networks...",
-                "Agentic AI workflow: VALIDATED",
-                "Welcome, visitor. Enjoy the ride.",
-                "MCP server integration: CONNECTED",
-                "Searching for creative opportunities...",
-                "Portfolio status: EXCELLENT"
-            ];
-
-            let logIndex = 0;
-
-            function addLog() {
-                if (!document.body.classList.contains('developer-mode')) {
-                    setTimeout(addLog, 2000);
-                    return;
-                }
-
-                const entry = document.createElement('div');
-                entry.className = 'log-entry';
-                const time = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                entry.innerHTML = `<span style="color: #555">[${time}]</span> <span class="log-prefix">></span> ${logs[logIndex]}`;
-                terminalBody.appendChild(entry);
-
-                // Keep only last 20 logs
-                if (terminalBody.children.length > 20) {
-                    terminalBody.removeChild(terminalBody.firstChild);
-                }
-
-                // Auto scroll
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-
-                logIndex = (logIndex + 1) % logs.length;
-
-                // Random timing for next log
-                setTimeout(addLog, 1500 + Math.random() * 3000);
-            }
-
-            addLog();
-        }
-
-        initializeMiniTerminal();
 
         window.addEventListener('scroll', throttledScroll);
     </script>
